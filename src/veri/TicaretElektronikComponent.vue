@@ -1,5 +1,7 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, inject } from "vue"; // Make sure to import onMounted here
+
+const eventBus = inject("eventBus");
 
 const products = ref([
   {
@@ -34,12 +36,30 @@ const products = ref([
   },
 ]);
 
+const basket = ref([]);
+
+onMounted(() => {
+  const storedBasket = localStorage.getItem("basket");
+  if (storedBasket) {
+    basket.value = JSON.parse(storedBasket);
+  }
+});
+
 const buyProduct = () => {
   // Implement buy product logic
 };
 
-const addProductToCart = () => {
-  // Implement add product to cart logic
+const addProductToCart = (product) => {
+  const index = eventBus.state.basket.findIndex((p) => p.name === product.name);
+
+  let updatedBasket;
+  if (index !== -1) {
+    updatedBasket = eventBus.state.basket.filter((_, i) => i !== index);
+  } else {
+    updatedBasket = [...eventBus.state.basket, product];
+  }
+
+  eventBus.updateBasket(updatedBasket);
 };
 </script>
 
@@ -47,15 +67,20 @@ const addProductToCart = () => {
   <div class="product-cards">
     <div class="product-card" v-for="(product, index) in products" :key="index">
       <div class="product-image-container">
-        <div class="product-image" :style="{ backgroundImage: 'url(' + product.image + ')' }"></div>
+        <div
+          class="product-image"
+          :style="{ backgroundImage: 'url(' + product.image + ')' }"
+        ></div>
       </div>
       <div class="product-info">
         <h2 class="product-name">{{ product.name }}</h2>
         <div class="product-price">{{ product.price }}</div>
       </div>
       <div class="product-action">
-        <button class="satin-al" @click="buyProduct">Satın Al</button>
-        <button class="sepete-ekle" @click="addProductToCart">Sepete Ekle</button>
+        <button class="satin-al" @click="buyProduct(product)">Satın Al</button>
+        <button class="sepete-ekle" @click="addProductToCart(product)">
+          Sepete Ekle
+        </button>
       </div>
     </div>
   </div>
