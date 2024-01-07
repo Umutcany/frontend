@@ -11,14 +11,22 @@ const basketItemCount = computed(() => eventBus.state.basket.length);
     <routerLink to="/ticaret">Ticaret Bilgileri</routerLink>
     <routerLink to="/urunler">Ürünlerimiz</routerLink>
     <routerLink to="/urun_ekle">Ürün Ekle</routerLink>
-    <a href="#">Ürün Hakkında</a>
-    <routerLink to="#">
-      Sepet <span class="badge">{{ basketItemCount }}</span>
+    <routerLink to="/urun_hakkinda">Ürün Hakkında</routerLink>
+    <routerLink to="/sepet">
+      <div class="sepet">
+          Sepet  <span class="badge">{{ basketItemCount }}</span>
+          <font-awesome-icon :icon="['fas', 'basket-shopping']" />
+        </div>
     </routerLink>
   </div>
 </template>
 
 <style>
+
+.sepet{
+  font-weight: bold;
+}
+
 .Menu {
   overflow-x: hidden;
   flex-grow: 1;
@@ -48,12 +56,14 @@ const basketItemCount = computed(() => eventBus.state.basket.length);
 }
 
 .badge {
-  background-color: #ff0000; /* Red background for visibility */
+  background-color: #ff0000;
   color: white;
-  border-radius: 50%; /* Circular badge */
-  padding: 3px 6px; /* Padding inside the badge */
+  border-radius: 50%; 
+  padding: 3px 6px; 
   font-size: 14px;
-  vertical-align: top; /* Align top if necessary */
-  margin-left: 4px; /* Space between the badge and the link text */
+  vertical-align: top; 
+  position: absolute;
+  top: 0.2px;
+  right: 10px;
 }
 </style>

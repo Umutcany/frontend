@@ -1,7 +1,30 @@
 <script setup>
 import { ref } from "vue";
+import {urunEklemeKullan} from '@/stores/urunEkle'
+import { storeToRefs } from "pinia";
 
-const products = ref([]); // your existing products array
+
+
+
+const dialog_acik = ref(false);
+
+const urunEklemeDukkan = urunEklemeKullan();
+
+const {yeniUrun} = storeToRefs(urunEklemeDukkan)
+
+const {ekle} = urunEklemeKullan
+
+
+const ticaret_bilgilerini_yazdir = () => {
+  console.log(yeniUrun.value);
+  dialog_acik.value = true;
+};
+
+
+const ticaret_bilgilerini_kapat = () => {
+  dialog_acik.value=false
+}
+
 
 const newProduct = ref({
   urun_kodu: "",
@@ -12,13 +35,16 @@ const newProduct = ref({
 });
 
 // Handle form submission
-const createProduct = async () => {};
+const createProduct = async () => {
+  console.log("asdadsa")
+  ekle
+};
 </script>
 
 <template>
   <!-- New product form -->
   <div class="form-container">
-    <form @submit.prevent="createProduct">
+    <form>
       <div class="form-group">
         <label for="urun_kodu">Ürün Kodu</label>
         <input
@@ -63,7 +89,7 @@ const createProduct = async () => {};
         ></textarea>
       </div>
 
-      <button type="submit" :disabled="isSubmitting">
+      <button @click="ekle()" type="submit" :disabled="isSubmitting">
         {{ isSubmitting ? "Ekleniyor..." : "Ürün Ekle" }}
       </button>
     </form>

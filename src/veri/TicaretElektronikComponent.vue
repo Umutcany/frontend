@@ -79,7 +79,7 @@ const addProductToCart = (product) => {
       <div class="product-action">
         <button class="satin-al" @click="buyProduct(product)">Satın Al</button>
         <button class="sepete-ekle" @click="addProductToCart(product)">
-          Sepete Ekle
+          Sepete Ekle 
         </button>
       </div>
     </div>
