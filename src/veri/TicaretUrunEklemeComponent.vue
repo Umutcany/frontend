@@ -1,30 +1,21 @@
 <script setup>
 import { ref } from "vue";
-import {urunEklemeKullan} from '@/stores/urunEkle'
+import { urunEklemeKullan } from "@/stores/urunEkle";
 import { storeToRefs } from "pinia";
-
-
-
 
 const dialog_acik = ref(false);
 
 const urunEklemeDukkan = urunEklemeKullan();
-
-const {yeniUrun} = storeToRefs(urunEklemeDukkan)
-
-const {ekle} = urunEklemeKullan
-
+const { ekle } = urunEklemeDukkan;
 
 const ticaret_bilgilerini_yazdir = () => {
   console.log(yeniUrun.value);
   dialog_acik.value = true;
 };
 
-
 const ticaret_bilgilerini_kapat = () => {
-  dialog_acik.value=false
-}
-
+  dialog_acik.value = false;
+};
 
 const newProduct = ref({
   urun_kodu: "",
@@ -36,8 +27,8 @@ const newProduct = ref({
 
 // Handle form submission
 const createProduct = async () => {
-  console.log("asdadsa")
-  ekle
+  console.log("asdadsa");
+  ekle;
 };
 </script>
 
