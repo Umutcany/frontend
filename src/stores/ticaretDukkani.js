@@ -22,6 +22,14 @@ export const ticaretDukkaniKullan = defineStore("ticaret", () => {
     ticaret_yetkiliKisi: "",
   });
 
+  const ticaretSec =(ticaret)=>{
+    seciliTicaret.value.id=ticaret.id
+    seciliTicaret.value.ticaret_adi=ticaret.ticaret_adi,
+    seciliTicaret.value.ticaret_adres=ticaret.ticaret_adres,
+    seciliTicaret.value.ticaret_telefon=ticaret.ticaret_telefon,
+    seciliTicaret.value.ticaret_yetkiliKisi=ticaret.ticaret_yetkiliKisi
+  } 
+
   const ticaretler = ref([]);
   const sayfadaki_kayit_sayisi = ref(10);
   const toplam_sayfa = ref(0);
@@ -60,33 +68,46 @@ export const ticaretDukkaniKullan = defineStore("ticaret", () => {
       });
   };
 
-  const guncelle = () => {};
+  const guncelle = (fonksiyon) => {
+    yukleniyor.value=true;
+    api.patch(`/ticaret/${seciliTicaret.value.id}`,{
+      ticaret_adi:seciliTicaret.value.ticaret_adi,
+      ticaret_adres:seciliTicaret.value.ticaret_adres,
+      ticaret_telefon:seciliTicaret.value.ticaret_telefon      
+    })
+    .then((result)=>{
+      yukleniyor.value=false
+      bilgi(`${seciliTicaret.value.ticaret_adi} Güncellendi.`)
+      fonksiyon()
+    })
+    .catch(()=>{
+      yukleniyor.value=false;
+      hata("Kayıt Güncellenemedi!")
+      fonksiyon();
+    })
+  };
 
-  const sil = (ticaretId, fonksiyon) => {
-    yukleniyor.value = true;
-    api.delete(`/ticaret`,yeniTicaret.id)
-        .then(function (deger) {
-            if (id !== yeniTicaret.id) {
-                fonksiyon(deger.data);
-            } else {
-                console.log(deger.data);
-            }
-            yukleniyor.value = false;
-            bilgi("İşleminiz Başarıyla Tamamlandı!");
-        })
-        .catch(function () {
-            yukleniyor.value = false;
-            hata("Malesef işleminiz esnasında hata meydana geldi tekrar deneyiniz...");
-        });
+  const sil = (fonksiyon) => {
+    yukleniyor.value=true;
+    api.delete(`/ticaret/${seciliTicaret.value.id}`)
+    .then((result)=>{
+      yukleniyor.value=false
+      bilgi(`${seciliTicaret.value.ticaret_adi} Silindi.`)
+      fonksiyon();
+    })
+    .catch(()=>{
+      yukleniyor.value=false;
+      hata("Kayıt silinirken bir hata meydana geldi.")
+      fonksiyon();
+    })
 };
-
-
 
   const ara = (sayfa = 1) => {
     yukleniyor.value = true;
     api.get(`/ticaret/sayfa_sayisi/${sayfadaki_kayit_sayisi.value}`)
       .then((veri) => {
         toplam_sayfa.value = veri.data.sayfa_sayisi;
+        sayfa = Math.min(sayfa,toplam_sayfa.value)
         api.get(`/ticaret/sayfa/${sayfa}/${sayfadaki_kayit_sayisi.value}`)
           .then((veri) => {
             yukleniyor.value = false;
@@ -104,5 +125,5 @@ export const ticaretDukkaniKullan = defineStore("ticaret", () => {
       });
   };
 
-  return { toplam_sayfa,seciliTicaret, yeniTicaret, ticaretler, ekle, sil, guncelle, ara };
+  return { toplam_sayfa,seciliTicaret, yeniTicaret, ticaretler, ekle, sil, guncelle, ara,ticaretSec };
 });
