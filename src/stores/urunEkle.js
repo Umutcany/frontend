@@ -1,11 +1,15 @@
 
 import axios from "axios";
 import { defineStore, storeToRefs } from "pinia";
-import { ref } from "vue";
+import { ref,watch } from "vue";
 import { yukleniyorDukkaniKullan } from "./yukleniyorDukkani";
 import { uyariDukkaniKullan } from "./uyariDukkani";
 
 export const urunEklemeKullan = defineStore("urun", () => {
+
+
+  const sayfadaki_kayit_sayisi = ref(10);
+  const toplam_sayfa = ref(0);
 
   const seciliUrun = ref({
     id: 0,
@@ -27,9 +31,11 @@ export const urunEklemeKullan = defineStore("urun", () => {
         urun_aciklama: "",
       });
 
+
       const urunler = ref([]);
 
-      
+
+
     const api = axios.create({
       baseURL: "http://127.0.0.1:5000/api/v1",
     });
@@ -100,17 +106,26 @@ export const urunEklemeKullan = defineStore("urun", () => {
       })
   };
   
-  const ara = () => {
+  const ara = (sayfa = 1) => {
     yukleniyor.value = true;
-    api.get("/urun")
+    api.get(`/urun/sayfa_sayisi/${sayfadaki_kayit_sayisi.value}`)
       .then((veri) => {
-        yukleniyor.value = false;
-        urunler.value=veri.data
-        bilgi("İşlem Başarılı");
+        toplam_sayfa.value = veri.data.sayfa_sayisi;
+        sayfa = Math.min(sayfa,toplam_sayfa.value)
+        api.get(`/urun/sayfa/${sayfa}/${sayfadaki_kayit_sayisi.value}`)
+          .then((veri) => {
+            yukleniyor.value = false;
+            urunler.value = veri.data;
+            bilgi("Veri Başarıyla Yüklendi!");
+          })
+          .catch(() => {
+            yukleniyor.value = false;
+            hata("Veri Yüklenemedi...");
+          });
       })
       .catch(() => {
-        yukleniyor.value = false;
-        hata("İşlem gerçekleşirken bir hata meydana geldi.");
+        yukleniyor.value = "false";
+        hata("Sayfa Sayısı Öğrenilemedi!");
       });
   };
   

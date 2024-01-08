@@ -32,10 +32,10 @@ const duzenle_dialog_acik = ref(false);
         <span class="baslik">Tanımlı Ticaretler</span>
       </div>
       <div class="satir baslik">
-        <div class="hucre sutun-0">Ticaret Telefon</div>
-        <div class="hucre sutun-1">Ticaret Ad</div>
-        <div class="hucre sutun-2">Ticaret Adres</div>
-        <div class="hucre sutun-3">Ticaret Yetkili Kisi</div>
+        <div class="hucre sutun-0">Şube Telefon</div>
+        <div class="hucre sutun-1">Şube İsmi</div>
+        <div class="hucre sutun-2">Şube Adres</div>
+        <div class="hucre sutun-3">Şube Yetkili Kisi</div>
       </div>
       <div class="satir" v-for="ticaret in ticaretler" :key="ticaret.id">
         <div class="hucre sutun-0">{{ ticaret.ticaret_telefon }}</div>
@@ -80,7 +80,7 @@ const duzenle_dialog_acik = ref(false);
       </template>
       <template #buttons>
         <div
-          class="ekle"
+          class="iptal"
           @click="
             sil(() => {
               silme_dialog_acik = false;
@@ -90,7 +90,7 @@ const duzenle_dialog_acik = ref(false);
         >
           Evet
         </div>
-        <div class="iptal" @click="silme_dialog_acik = false">Hayır</div>
+        <div class="ekle" @click="silme_dialog_acik = false">Hayır</div>
       </template>
     </Modal>
 
@@ -106,7 +106,7 @@ const duzenle_dialog_acik = ref(false);
       <template #sorumetni>
         <div class="data-form">
           <div class="satir">
-            <div class="etiket">Ticaret Adı</div>
+            <div class="etiket">Şube Adı</div>
             <div class="bilesen">
               <font-awesome-icon icon="basket-shopping" />
               <input
@@ -120,7 +120,7 @@ const duzenle_dialog_acik = ref(false);
             </div>
           </div>
           <div class="satir">
-            <div class="etiket">Ticaret Telefon</div>
+            <div class="etiket">Şube Telefon</div>
             <div class="bilesen">
               <font-awesome-icon icon="phone" />
               <input
@@ -134,7 +134,7 @@ const duzenle_dialog_acik = ref(false);
             </div>
           </div>
           <div class="satir">
-            <div class="etiket">Ticaret Adres</div>
+            <div class="etiket">Şube Adres</div>
             <div class="bilesen">
               <font-awesome-icon icon="location-dot" />
               <textarea
@@ -146,7 +146,7 @@ const duzenle_dialog_acik = ref(false);
             </div>
           </div>
           <div class="satir">
-            <div class="etiket">Yetkili kisi</div>
+            <div class="etiket">Şube Yetkili Kişi</div>
             <div class="bilesen">
               <font-awesome-icon icon="user-tie" />
               <input
@@ -217,7 +217,7 @@ const duzenle_dialog_acik = ref(false);
 }
 .satir.baslik {
   color: red;
-  background-color: rgba(1, 1, 1, 0%);
+  background-color: rgba(1, 1, 1, 1%);
 }
 
 .ticaretler.baslik span {
@@ -247,33 +247,34 @@ const duzenle_dialog_acik = ref(false);
   box-sizing: border-box;
   overflow: hidden;
   text-overflow: ellipsis; /* Metin sütuna sığmazsa üç nokta ile kes */
-  white-space: nowrap; /* Metni tek satırda tut */
+  white-space: nowrap;  /* Metni tek satırda tut */
 }
 
 .hucre.sutun-0 {
   order: 0;
-  flex: 1 1 15%; /* İlk sütunun genişliği */
+  flex: 0 1 15%; /* İlk sütunun genişliği */
   border-left: 1px solid black;
 }
 
 .hucre.sutun-1 {
   order: 1;
-  flex: 1 1 20%;
+  flex: 0 1 20%;
 }
 
 .hucre.sutun-2 {
   order: 2;
-  flex: 1 1 30%;
+  flex: 0 1 30%;
 }
 
 .hucre.sutun-3 {
   order: 3;
-  flex: 1 1 20%; /* Dördüncü sütunun genişliği */
+  flex: 10 1 10%; /* Dördüncü sütunun genişliği */
 }
 
 .hucre.sutun-4 {
   order: 4;
-  flex: 1 1 10%;
+  flex: 0 1 7%;
+  border-left: none;
   /* border-right: none; */ /* Sınırı kaldırın */
 }
 
@@ -291,23 +292,34 @@ a.btn {
   margin: 2px;
 }
 
-.ekle,
+.ekle{
+  display: block;
+  padding: 10px;
+  background-color: green;
+  color: white;
+  margin-right: 15px;
+  border-radius: 20px;
+  transition: all 0.3s ease; /* Animasyon için geçiş süresi ve kolaylık ekledik */
+
+}
 .iptal {
+  color: white;
   display: block;
   padding: 10px;
   background-color: red;
   margin-right: 15px;
   cursor: pointer;
-  border-radius: 30px;
+  border-radius: 20px;
   transition: all 0.3s ease; /* Animasyon için geçiş süresi ve kolaylık ekledik */
 }
 
 .ekle:hover,
 .iptal:hover {
-  color: red;
+  color: black;
   background-color: white;
   cursor: pointer;
   transform: scale(1.1); /* Büyüklük artışı animasyonu */
+
 }
 
 .uyari-mesaji {

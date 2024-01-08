@@ -10,6 +10,8 @@
   const urunEklemeDukkan = urunEklemeKullan();
   const { ekle,yeniUrun,ara} = urunEklemeDukkan;
 
+  const sayfa_no = ref(0);
+
   const ticaret_bilgilerini_yazdir = () => {
     console.log(yeniUrun.value);
     dialog_acik.value = true;

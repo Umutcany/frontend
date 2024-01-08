@@ -51,7 +51,7 @@ function ticaret_yetkiliKisi_karakter_sinirini_kontrol_et(e) {
 <template>
   <div class="data-form">
     <div class="satir">
-      <div class="etiket">Ticaret Adı</div>
+      <div class="etiket">Şube Adı</div>
       <div class="bilesen">
         <font-awesome-icon icon="basket-shopping" />
         <input
@@ -65,7 +65,7 @@ function ticaret_yetkiliKisi_karakter_sinirini_kontrol_et(e) {
       </div>
     </div>
     <div class="satir">
-      <div class="etiket">Ticaret Telefon</div>
+      <div class="etiket">Şube Telefon</div>
       <div class="bilesen">
         <font-awesome-icon icon="phone" />
         <input
@@ -79,7 +79,7 @@ function ticaret_yetkiliKisi_karakter_sinirini_kontrol_et(e) {
       </div>
     </div>
     <div class="satir">
-      <div class="etiket">Ticaret Adres</div>
+      <div class="etiket">Şube Adres</div>
       <div class="bilesen">
         <font-awesome-icon icon="location-dot" />
         <textarea
@@ -91,7 +91,7 @@ function ticaret_yetkiliKisi_karakter_sinirini_kontrol_et(e) {
       </div>
     </div>
     <div class="satir">
-      <div class="etiket">Yetkili kisi</div>
+      <div class="etiket">Şube Yetkili Kişi</div>
       <div class="bilesen">
         <font-awesome-icon icon="user-tie" />
         <input
@@ -145,23 +145,34 @@ div.butonlar {
   display: flex;
 }
 
-.ekle,
+.ekle{
+  display: block;
+  padding: 10px;
+  background-color: green;
+  color: white;
+  margin-right: 15px;
+  border-radius: 20px;
+  transition: all 0.3s ease; /* Animasyon için geçiş süresi ve kolaylık ekledik */
+
+}
 .iptal {
+  color: white;
   display: block;
   padding: 10px;
   background-color: red;
   margin-right: 15px;
   cursor: pointer;
-  border-radius: 30px;
+  border-radius: 20px;
   transition: all 0.3s ease; /* Animasyon için geçiş süresi ve kolaylık ekledik */
 }
 
 .ekle:hover,
 .iptal:hover {
-  color: red;
+  color: black;
   background-color: white;
   cursor: pointer;
   transform: scale(1.1); /* Büyüklük artışı animasyonu */
+
 }
 
 .uyari-mesaji {

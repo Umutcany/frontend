@@ -11,8 +11,11 @@ const { sil, ara, guncelle,ticaretSec } = urunEklemeDukkani;
 
 const { urunler, yeniUrun } = storeToRefs(urunEklemeDukkani);
 
+const sayfa_no = ref(0);
+
+
 onMounted(() => {
-  ara();
+  ara(sayfa_no.value);
 });
 
 const basket = ref([]);
