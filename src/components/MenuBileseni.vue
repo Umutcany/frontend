@@ -1,7 +1,9 @@
 <script setup>
-import { inject, computed } from "vue";
+import { inject, computed, getCurrentInstance } from "vue";
 
-const eventBus = inject("eventBus");
+const { proxy } = getCurrentInstance();
+
+const eventBus = proxy.$eventBus;
 
 const basketItemCount = computed(() => eventBus.state.basket.length);
 </script>
@@ -13,16 +15,15 @@ const basketItemCount = computed(() => eventBus.state.basket.length);
     <routerLink to="/urun_ekle">Ürün Ekle</routerLink>
     <routerLink to="/sepet">
       <div class="sepet">
-          Sepet  <span class="badge">{{ basketItemCount }}</span>
-          <font-awesome-icon :icon="['fas', 'basket-shopping']" />
-        </div>
+        Sepet <span class="badge">{{ basketItemCount }}</span>
+        <font-awesome-icon :icon="['fas', 'basket-shopping']" />
+      </div>
     </routerLink>
   </div>
 </template>
 
 <style>
-
-.sepet{
+.sepet {
   font-weight: bold;
 }
 
@@ -57,10 +58,10 @@ const basketItemCount = computed(() => eventBus.state.basket.length);
 .badge {
   background-color: #ff0000;
   color: white;
-  border-radius: 50%; 
-  padding: 3px 6px; 
+  border-radius: 50%;
+  padding: 3px 6px;
   font-size: 14px;
-  vertical-align: top; 
+  vertical-align: top;
   position: absolute;
   top: 0.2px;
   right: 10px;

@@ -5,14 +5,12 @@ import { storeToRefs } from "pinia";
 
 const eventBus = inject("eventBus");
 
-
 const urunEklemeDukkani = urunEklemeKullan();
-const { sil, ara, guncelle,ticaretSec } = urunEklemeDukkani;
+const { sil, ara, guncelle, ticaretSec } = urunEklemeDukkani;
 
 const { urunler, yeniUrun } = storeToRefs(urunEklemeDukkani);
 
 const sayfa_no = ref(0);
-
 
 onMounted(() => {
   ara(sayfa_no.value);
@@ -32,7 +30,7 @@ const buyProduct = () => {
 };
 
 const addProductToCart = (product) => {
-  const index = eventBus.state.basket.findIndex((p) => p.name === product.name);
+  const index = eventBus.state.basket.findIndex((p) => p.id === product.id);
 
   let updatedBasket;
   if (index !== -1) {
@@ -49,19 +47,23 @@ const addProductToCart = (product) => {
   <div class="product-cards">
     <div class="product-card" v-for="urun in urunler" :key="urun.id">
       <div class="product-image-container">
-        <div
-          class="product-image"
-        ><img  :src="urun.urun_resim" class="product-image" alt="Resim Yüklenemedi
-        "></div>
+        <div class="product-image">
+          <img
+            :src="urun.urun_resim"
+            class="product-image"
+            alt="Resim Yüklenemedi
+        "
+          />
+        </div>
       </div>
       <div class="product-info">
         <h2 class="product-name">{{ urun.urun_adi }}</h2>
-        <div class="product-price">{{urun.urun_fiyat }} $</div>
+        <div class="product-price">{{ urun.urun_fiyat }} $</div>
       </div>
       <div class="product-action">
         <button class="satin-al" @click="buyProduct(product)">Satın Al</button>
         <button class="sepete-ekle" @click="addProductToCart(product)">
-          Sepete Ekle 
+          Sepete Ekle
         </button>
       </div>
     </div>
@@ -98,7 +100,7 @@ const addProductToCart = (product) => {
   height: 100%;
   background-size: cover;
   background-position: center;
-  object-fit:contain;
+  object-fit: contain;
 }
 
 .product-info {

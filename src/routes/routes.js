@@ -8,7 +8,8 @@ import TicaretGiyimComponent from "../veri/TicaretGiyimComponent.vue";
 import TicaretKisiselBakimComponent from "../veri/TicaretKisiselBakim.vue";
 import TicaretElektronikComponent from "../veri/TicaretElektronikComponent.vue";
 import TicaretUrunEklemeComponent from "../veri/TicaretUrunEklemeComponent.vue";
-import TicaretUrunKategoriComponent from '../veri/TicaretUrunKategoriComponent.vue';
+import TicaretUrunKategoriComponent from "../veri/TicaretUrunKategoriComponent.vue";
+import TicaretSepettekiUrunler from "../veri/TicaretSepettekiUrunler.vue";
 
 export const router = createRouter({
   history: createWebHashHistory(),
@@ -30,10 +31,6 @@ export const router = createRouter({
           path: "/elektronik",
           component: TicaretElektronikComponent,
         },
-        {
-          path:"/sepet",
-          component:TicaretUrunKategoriComponent,
-        },
       ],
     },
     { path: "/urun_ekle", component: TicaretUrunEklemeComponent },
@@ -51,5 +48,6 @@ export const router = createRouter({
         },
       ],
     },
+    { path: "/sepet", component: TicaretSepettekiUrunler },
   ],
 });

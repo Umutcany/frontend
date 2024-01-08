@@ -5,10 +5,6 @@ import IcerikBileseni from "./components/IcerikBileseni.vue";
 import Footer from "./components/alt_components/Footer.vue";
 import YukleniyorComponent from "./components/ortak/YukleniyorComponent.vue";
 import UyariBileseni from "./components/ortak/UyariBileseni.vue";
-import { provide } from "vue";
-import { EventBus } from "./EventBus.js";
-
-provide("eventBus", EventBus);
 
 const temalar = [
   { tema_adi: "Açık Renk Teması", tema_class: "acik" },
