@@ -161,7 +161,6 @@ const duzenle_dialog_acik = ref(false);
           </div>
         </div>
       </template>
-      <div></div>
       <template #buttons>
         <div
           class="ekle"
@@ -181,6 +180,37 @@ const duzenle_dialog_acik = ref(false);
 </template>
 
 <style scoped>
+
+.bilesen>input{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+}
+.bilesen{
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.bilesen>textarea{
+  height: 150px;
+  margin-left: 5px;
+}
+.etiket{
+  font-weight: bold;
+}
+.data-form{
+  display: flex;
+  flex-direction: column;
+}
+.bilesen{
+  display: flex;
+  flex-direction: column;
+  margin-top: 2px;
+  align-items: center;
+  justify-content: center;
+}
 .ticaretler {
   width: 100%;
   padding: 20px 10px;
@@ -205,7 +235,8 @@ const duzenle_dialog_acik = ref(false);
 
 .satir {
   display: flex;
-  border-spacing: 2px; /* Sütunlar arasında boşluk */
+  justify-content: space-between;
+  align-items: center;
 }
 
 .hucre {
@@ -237,7 +268,7 @@ const duzenle_dialog_acik = ref(false);
 
 .hucre.sutun-3 {
   order: 3;
-  flex: 1 1 25%; /* Dördüncü sütunun genişliği */
+  flex: 1 1 20%; /* Dördüncü sütunun genişliği */
 }
 
 .hucre.sutun-4 {
@@ -286,11 +317,24 @@ a.btn {
   text-decoration: underline;
 }
 
-div.butonlar {
-  display: flex;
+.bilesen svg {
+  padding: 10px;
+  background: var(--menu-arkaplan);
+  color: var(--menu-yazirengi);
+  min-width: 50px;
+  text-align: center;
 }
 
-div.butonlar {
-  display: flex;
+.girdi {
+  width: 100%;
+  padding: 5px;
+  outline: none;
+  overflow-x: hidden;
+  border: none;
 }
+
+.bilesen > .girdi:focus {
+  border: 2px solid var(--menu-arkaplan);
+}
+
 </style>

@@ -145,10 +145,6 @@ div.butonlar {
   display: flex;
 }
 
-div.butonlar {
-  display: flex;
-}
-
 .ekle,
 .iptal {
   display: block;

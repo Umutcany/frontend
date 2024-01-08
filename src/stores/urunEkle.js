@@ -6,6 +6,19 @@ import { yukleniyorDukkaniKullan } from "./yukleniyorDukkani";
 import { uyariDukkaniKullan } from "./uyariDukkani";
 
 export const urunEklemeKullan = defineStore("urun", () => {
+
+  const seciliUrun = ref({
+    id: 0,
+    olusturulma_tarihi: "",
+    guncelleme_tarihi: "",
+    urun_kodu: "",
+    urun_adi: "",
+    urun_resim: "",
+    urun_fiyat: 0,
+    urun_aciklama: "",
+  });
+
+
     const yeniUrun = ref({
         urun_kodu: "",
         urun_adi: "",
@@ -13,6 +26,9 @@ export const urunEklemeKullan = defineStore("urun", () => {
         urun_fiyat: 0,
         urun_aciklama: "",
       });
+
+      const urunler = ref([]);
+
       
     const api = axios.create({
       baseURL: "http://127.0.0.1:5000/api/v1",
@@ -25,7 +41,6 @@ export const urunEklemeKullan = defineStore("urun", () => {
     const { bilgi, hata } = uyariDukkani;
   
     const ekle = (fonksiyon) => {
-        console.log("ekleniyor...")
       yukleniyor.value = true;
       api.post("/urun", yeniUrun.value)
         .then(function (deger) {
@@ -46,6 +61,7 @@ export const urunEklemeKullan = defineStore("urun", () => {
           bilgi("İşleminiz Başarıyla Tamamlandı!");
         })
         .catch(function () {
+          yukleniyor.value=false;
           hata("Malesef işleminiz esnasında hata meydana geldi tekrar deneyiniz...");
         });
     };
@@ -71,42 +87,33 @@ export const urunEklemeKullan = defineStore("urun", () => {
   
     const sil = (fonksiyon) => {
       yukleniyor.value=true;
-      api.delete(`/ticaret/${seciliTicaret.value.id}`)
+      api.delete(`/urun/${seciliUrun.value.id}`)
       .then((result)=>{
         yukleniyor.value=false
-        bilgi(`${seciliTicaret.value.ticaret_adi} Silindi.`)
-        fonksiyon();
+        bilgi(`${seciliUrun.urun_adi} Silindi.`)
+        fonksiyon()
       })
       .catch(()=>{
         yukleniyor.value=false;
         hata("Kayıt silinirken bir hata meydana geldi.")
-        fonksiyon();
+        fonksiyon()
       })
   };
   
-    const ara = (sayfa = 1) => {
-      yukleniyor.value = true;
-      api.get(`/ticaret/sayfa_sayisi/${sayfadaki_kayit_sayisi.value}`)
-        .then((veri) => {
-          toplam_sayfa.value = veri.data.sayfa_sayisi;
-          sayfa = Math.min(sayfa,toplam_sayfa.value)
-          api.get(`/ticaret/sayfa/${sayfa}/${sayfadaki_kayit_sayisi.value}`)
-            .then((veri) => {
-              yukleniyor.value = false;
-              ticaretler.value = veri.data;
-              bilgi("Veri Başarıyla Yüklendi!");
-            })
-            .catch(() => {
-              yukleniyor.value = false;
-              hata("Veri Yüklenemedi...");
-            });
-        })
-        .catch(() => {
-          yukleniyor.value = "false";
-          hata("Sayfa Sayısı Öğrenilemedi!");
-        });
-    };
+  const ara = () => {
+    yukleniyor.value = true;
+    api.get("/urun")
+      .then((veri) => {
+        yukleniyor.value = false;
+        urunler.value=veri.data
+        bilgi("İşlem Başarılı");
+      })
+      .catch(() => {
+        yukleniyor.value = false;
+        hata("İşlem gerçekleşirken bir hata meydana geldi.");
+      });
+  };
   
-    return { ekle,yeniUrun };
+    return { ekle,yeniUrun,urunler,ara,sil,seciliUrun };
   });
   
