@@ -1,14 +1,14 @@
-.koyu{
-    --arkaplan:#1C2833;
-    --yazirengi:#FBFCFC;
-
-
-    --baslik-arkaplan:#D0D3D4;
-    --baslik-yazirengi:#273746;
-
-    --menu-arkaplan:#797D7F;
-    --menu-yazirengi:#34495E;
-
-    --menu-arkaplan-uzerinde:#D7DBDD;
-    --menu-yazi-tipi-uzerinde:#0B5345;
-}
+.koyu {
+    --arkaplan: rgb(215, 140, 49); /* Koyu gri arkaplan */
+    --yazirengi: #FBFCFC; /* Beyaz yazı rengi */
+  
+    --baslik-arkaplan: black; /* Gri başlık arkaplan */
+    --baslik-yazirengi: white; /* Koyu gri başlık yazı rengi */
+  
+    --menu-arkaplan: #4C4C4C; /* Gri menü arkaplan */
+    --menu-yazirengi: darkorange; /* Gri menü yazı rengi */
+  
+    --menu-arkaplan-uzerinde: darkorange; /* Gri menü üzerinde arkaplan */
+    --menu-yazi-tipi-uzerinde: white; /* Yeşil menü üzerinde yazı rengi */
+  }
+  

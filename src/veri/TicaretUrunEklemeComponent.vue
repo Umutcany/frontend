@@ -90,9 +90,11 @@
 
   <style scoped>
 
-  .urunler{
-    display: flex;
-  }
+.urunler {
+  flex-grow: 1;
+  padding: 30px;
+  box-sizing: border-box;
+}
 
   .temel-container{
     display: flex;
@@ -108,12 +110,13 @@
   }
 
   .form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 30px;
-  }
+  position: flex;
+  width: 100%; /* İhtiyaca göre genişliği değiştirebilirsiniz */
+  height: 100vh;
+  overflow-y: auto;
+  padding: 30px;
+  box-sizing: border-box;
+}
 
   form {
     width: 100%;

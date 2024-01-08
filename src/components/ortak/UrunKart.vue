@@ -90,6 +90,7 @@ const addProductToCart = (product) => {
   height: 100%;
   overflow: hidden;
   border-bottom: 2px solid #ccc;
+  object-fit: contain;
 }
 
 .product-image {
@@ -97,6 +98,7 @@ const addProductToCart = (product) => {
   height: 100%;
   background-size: cover;
   background-position: center;
+  object-fit:contain;
 }
 
 .product-info {

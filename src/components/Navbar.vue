@@ -8,13 +8,18 @@ import MenuBileseni from './MenuBileseni.vue';
         <a href="#">
         <img class="logo" src="https://seeklogo.com/images/S/shopify-logo-1C711BCDE4-seeklogo.com.png" alt="logo">
     </a>
-    <span class="logo-header">Umut|Alperen Commerce</span>
+    <span class="logo-header">Umut | Alperen <span class="ltd">LTD</span></span>
         <MenuBileseni class="links"/>
     </div>
 
 </template>
 
 <style>
+.ltd{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color:#FFA500;
+}
 
 .logo-header{
     margin-left: 15px;
@@ -29,6 +34,11 @@ import MenuBileseni from './MenuBileseni.vue';
 
 .logo{
     height: 50px;
+}
+
+.logo-header{
+    font-weight: bold;
+
 }
 
 .header{

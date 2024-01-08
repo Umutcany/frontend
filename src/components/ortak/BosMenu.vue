@@ -5,7 +5,7 @@
 <template>
 
 <p>
-    Lütfen üst menüden seçim yapınız...
+    Sitemize Hoşgeldiniz! Lütfen üst menüden isteğinize göre bir menü seçiniz...
 </p>
 </template>
 

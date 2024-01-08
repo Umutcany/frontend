@@ -216,7 +216,8 @@ const duzenle_dialog_acik = ref(false);
   padding: 20px 10px;
 }
 .satir.baslik {
-  color: red;
+  color: black;
+  font-weight: bold;
   background-color: rgba(1, 1, 1, 1%);
 }
 
@@ -227,6 +228,7 @@ const duzenle_dialog_acik = ref(false);
 
 .ticaretler.baslik {
   display: flex;
+  font-weight: bold;
   align-items: center;
   justify-content: center;
   background-color: rgba(1, 1, 1, 0%);
@@ -252,7 +254,7 @@ const duzenle_dialog_acik = ref(false);
 
 .hucre.sutun-0 {
   order: 0;
-  flex: 0 1 15%; /* İlk sütunun genişliği */
+  flex: 0 0 17%; /* İlk sütunun genişliği */
   border-left: 1px solid black;
 }
 

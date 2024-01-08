@@ -1,16 +1,14 @@
-.acik{
-
-    --arkaplan:#D0D3D4;
-    --yazirengi:#273746;
-
-
-    --baslik-arkaplan:#2E4053ed;
-    --baslik-yazirengi:#ECF0F1;
-
-
-    --menu-arkaplan:#797D7F;
-    --menu-yazirengi:#34495E;
-
-    --menu-arkaplan-uzerinde:#D7DBDD;
-    --menu-yazi-tipi-uzerinde:#0B5345;
-}
+.acik {
+    --arkaplan: #F2F4F4; /* Açık gri arkaplan */
+    --yazirengi: #2C3E50; /* Koyu gri yazı rengi */
+  
+    --baslik-arkaplan: #27AE60; /* Yeşil başlık arkaplan */
+    --baslik-yazirengi: #ECF0F1; /* Beyaz başlık yazı rengi */
+  
+    --menu-arkaplan: #3498DB; /* Mavi menü arkaplan */
+    --menu-yazirengi: #FFFFFF; /* Beyaz menü yazı rengi */
+  
+    --menu-arkaplan-uzerinde: darkorange; /* Gri menü üzerinde arkaplan */
+    --menu-yazi-tipi-uzerinde: black; /* Koyu mavi menü üzerinde yazı rengi */
+  }
+  

@@ -28,7 +28,7 @@
 }
 
 .link1:hover {
-    background-color: red;
+    background-color: darkorange;
     color: white;
     border: 1px solid black;
     border-radius: 35px;
@@ -39,7 +39,7 @@
 
 
 .link2:hover {
-    background-color: red;
+    background-color: darkorange;
     color: white;
     border: 1px solid black;
     border-radius: 35px;
