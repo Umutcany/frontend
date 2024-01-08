@@ -1,11 +1,11 @@
 <script setup>
-import UrunKart from "@/components/ortak/UrunKart.vue";
+import UrunKisiselBakim from "@/components/ortak/urunKisiselBakim.vue";
 import { ref } from "vue";
 
 </script>
 
 <template>
-  <UrunKart/>
+  <UrunKisiselBakim/>
 </template>
 
 <style scoped>

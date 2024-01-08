@@ -34,10 +34,6 @@ export const router = createRouter({
           path: "/elektronik",
           component: TicaretElektronikComponent,
         },
-        {
-          path: "/urun_hakkinda",
-          component: 31,
-        },
       ],
     },
     { path: "/urun_ekle", component: TicaretUrunEklemeComponent },

@@ -11,7 +11,6 @@ const basketItemCount = computed(() => eventBus.state.basket.length);
     <routerLink to="/ticaret">Ticaret Bilgileri</routerLink>
     <routerLink to="/urunler">Ürünlerimiz</routerLink>
     <routerLink to="/urun_ekle">Ürün Ekle</routerLink>
-    <routerLink to="/urun_hakkinda">Ürün Hakkında</routerLink>
     <routerLink to="/sepet">
       <div class="sepet">
           Sepet  <span class="badge">{{ basketItemCount }}</span>
